@@ -7,7 +7,7 @@
                 <?php while (have_posts()) : the_post(); ?>
                     <div class="item" id="post-<?php the_ID(); ?>">
 		                <div class="item-img">
-		                    <a href="<?php the_permalink(); ?>" target="_blank">
+		                    <a href="<?php echo home_url().'/go/'.get_the_ID().'/'; ?>" target="_blank">
 		                    	<?php if(get_post_custom_values("thumbnail")){ 
 		                    		$values = get_post_custom_values("thumbnail"); 
 		                    		echo '<img src="'.$values[0].'" alt="">';
