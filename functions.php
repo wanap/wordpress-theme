@@ -2,7 +2,7 @@
 include_once('include/post-panel.php');
 include_once('include/wpcomments.php');
 
-add_theme_support( 'post-thumbnails', array( 'post', 'page' ) );
+//add_theme_support( 'post-thumbnails', array( 'post', 'page' ) );
 
 register_nav_menus(
     array(
@@ -34,27 +34,29 @@ if( function_exists('register_sidebar') ) {
 
 }
 
+function get_breadcrumbs(){
+    if (!is_home()) {
+        // Add the Home link
+        echo '<a href="'. get_settings('home') .'" class="crumbs-cate">首页</a>';
+        if (is_single()) {
+            $category = get_the_category();
+            $category_id = get_cat_ID( $category[0]->cat_name );
+            echo '<i class="arrow">&gt;</i>'. get_category_parents( $category_id, true, '<i class="arrow">&gt;</i>').'文章详情';
+        }
+    }
+}
 
-function tagtext(){
 
-	global $post;
-
-	$gettags = get_the_tags($post->ID);
-
-	if ($gettags) {
-
-		foreach ($gettags as $tag) {
-
-		$posttag[] = $tag->name;
-
-	}
-
-	$tags = implode( ',', $posttag );
-
+function tagText(){
+    global $post;
+    $gettags = get_the_tags($post->ID);
+    if ($gettags) {
+        foreach ($gettags as $tag) {
+            $posttag[] = '<a class="tag">'.$tag->name.'</a>';
+	    }
+	    $tags = implode('', $posttag);
 		echo $tags;
-
 	}
-
 }
 
 function boke8_net_pagenavi($range = 9){

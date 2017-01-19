@@ -20,7 +20,7 @@
 					<p><input type="email" class="comment-input" name="email" value="<?php echo $comment_author_email; ?>" tabindex="2" required /><label>您的邮箱（*）</label></p>
 					<p><input type="text" class="comment-input" name="url" value="<?php echo $comment_author_url; ?>" tabindex="3" /><label>您的网址</label></p>
 				<?php endif; ?>	
-					<p><textarea name="comment" id="comment" tabindex="4" required ></textarea></p>
+					<p><textarea name="comment" id="comment" tabindex="4" required placeholder="发表评论需登录"></textarea></p>
 					<div class="comment-action">
 						<?php cancel_comment_reply_link(); ?>
 						<input type="submit" name="submit" class="submit" value="发表评论" tabindex="5" />

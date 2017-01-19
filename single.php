@@ -2,6 +2,9 @@
 <div class="main-body">
     <div class="container main-container clearfix">
         <div class="left-content">
+        	<div class="crumbs">
+        		当前位置：<?php echo get_breadcrumbs(); ?>
+        	</div>
 			<?php if (have_posts()) : ?>
 				<?php while (have_posts()) : the_post(); ?>	
 					<div class="post-detail" id="post-<?php the_ID(); ?>">
@@ -13,7 +16,7 @@
 							}?>
 						</h4>
 						<div class="post-meta">
-							<span>
+							<span class="time">
 							<?php $u_time = get_the_time('U'); 
 								$u_modified_time = get_the_modified_time('U');	
 								if ($u_modified_time != $u_time) {
@@ -22,8 +25,7 @@
 									the_time('Y年n月j日 H:i');
 								}?>
 							</span>
-							<span class="divider">|</span>
-							<?php the_category(' &bull; '); ?>
+							<div class="tags">标签：<?php echo get_the_tag_list('','',''); ?></div>
 						</div>
 						<div class="post-content">
 							<?php if(get_post_custom_values("thumbnail")){ 
@@ -33,10 +35,12 @@
 								echo "</div>";
 	                    		}
 							?>
-							<?php the_content();?>
+							<div class="output">
+								<?php the_content();?>
+							</div>
 						</div>
 						<div class="post-go">
-							<a rel="nofollow" href="<?php if(get_post_custom_values("url")){ $values = get_post_custom_values("url"); echo $values[0];}?>" target="_blank">去看看</a>
+							<a rel="nofollow" href="<?php echo home_url().'/go/'.get_the_ID().'/'; ?>" target="_blank">去看看<i>&gt;</i></a>
 						</div>
 					</div>
 				<?php endwhile; ?>
@@ -59,6 +63,7 @@
 							<?php while ($my_query->have_posts()) : $my_query->the_post(); ?>
 								<li class="similar-item">
 									<a href="<?php the_permalink(); ?>" target="_blank">
+										<div class="similar-img">
 										<?php if(get_post_custom_values("thumbnail")){ 
 				                    		$values = get_post_custom_values("thumbnail"); 
 				                    		echo '<img src="'.$values[0].'" alt="">';
@@ -66,6 +71,7 @@
 												echo '<img src="'.get_bloginfo('template_url').'/images/related-img.jpg">'; 
 											}
 										?>
+										</div>
 										<p class="similar-title"><?php the_title();?></p>
 									</a>
 								</li>

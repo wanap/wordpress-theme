@@ -7,8 +7,17 @@
                     <h1 class="page-title"><?php printf('“<span>' . esc_html( get_search_query() ) . '</span>”'.'的搜索结果' ); ?></h1>
                 </div>
                 <?php while (have_posts()) : the_post(); ?>
-                    <div class="item" id="post-<?php the_ID(); ?>">
-                        <div class="item-img">
+                    <div class="mod" id="post-<?php the_ID(); ?>">
+                        <h2 class="mod-title">
+                            <a href="<?php the_permalink(); ?>" target="_blank">
+                                <?php the_title();?>
+                                <?php if(get_post_custom_values("title")){ 
+                                    $values = get_post_custom_values("title"); 
+                                    echo '<span>'.$values[0].'</span>';
+                                }?>
+                            </a>
+                        </h2>
+                        <div class="mod-img">
                             <a href="<?php the_permalink(); ?>" target="_blank">
                                 <?php if(get_post_custom_values("thumbnail")){ 
                                     $values = get_post_custom_values("thumbnail"); 
@@ -19,24 +28,40 @@
                                 ?>
                             </a>
                         </div>
-                        <div class="item-info">
-                            <h4><a href="<?php the_permalink(); ?>" target="_blank" class="item-title"><?php the_title();?></a></h4>
-                            <p class="item-desc"><?php echo mb_strimwidth(strip_tags(apply_filters('the_content', $post->post_content)), 0, 200, "……"); ?></p>
-                            <div class="item-ft">
-                                <span class="fr">阅读(<?php if(function_exists('the_views')) { the_views(); } else { echo '200';} ?>)</span>
-                                <div class="item-time">
-                                    <span>
-                                        <?php $u_time = get_the_time('U'); 
-                                            $u_modified_time = get_the_modified_time('U');
-                                            if ($u_modified_time != $u_time) {
+                        <div class="mod-info">
+                            <div class="mod-top clearfix">
+                                <div class="mod-tips">推荐人：<a target="_blank" href="<?php echo get_author_posts_url(get_the_author_meta('ID'), get_the_author_meta('user_nicename')); ?>"><?php the_author(); ?></a></div>
+                                <div class="mod-tips">分类：<?php the_category(' '); ?></div>
+                                <div class="mod-time">
+                                    <?php 
+                                        if (get_the_time('U') != get_the_modified_time('U')) {
+                                            if (date("Y-m-d") == get_the_modified_time("Y-m-d")) {
+                                                the_modified_time('H:i');
+                                            } else {
                                                 the_modified_time('Y年n月j日 H:i');
+                                            }
+                                        } else {
+                                            if (date("Y-m-d") == get_the_time("Y-m-d")) {
+                                                the_time('H:i');
                                             } else {
                                                 the_time('Y年n月j日 H:i');
                                             }
-                                        ?>
-                                    </span>
-                                    <span class="divider">|</span>
-                                    <?php the_category(' &bull; '); ?>
+                                        }
+                                    ?>
+                                </div>
+                            </div>
+                            <p class="mod-desc">
+                                <?php echo mb_strimwidth(strip_tags(apply_filters('the_content', $post->post_content), '<strong>'), 0, 240, "……"); ?>
+                                <a href="<?php the_permalink(); ?>" class="mod-read" target="_blank">阅读全文</a>
+                            </p>
+                            <div class="mod-ft">
+                                <span class="mod-num"><?php if(function_exists('the_views')) { the_views(); } else { echo '200';} ?>人想买</span>
+                                <div class="mod-buy">
+                                    <a href="<?php echo home_url().'/go/'.get_the_ID().'/'; ?>" class="buy-link" target="_blank">直达链接<i>&gt;</i></a>
+                                    <?php if(get_post_custom_values("mall")){ 
+                                        $values = get_post_custom_values("mall"); 
+                                        echo '<span class="mall">'.$values[0].'</span>';
+                                    }?>
                                 </div>
                             </div>
                         </div>

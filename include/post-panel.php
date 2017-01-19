@@ -346,7 +346,7 @@
 
 
 
-            add_meta_box( 'new-meta-boxes', '文章优化', 'new_meta_boxes', 'post', 'normal', 'high' );      
+            add_meta_box( 'new-meta-boxes', '自定义文章', 'new_meta_boxes', 'post', 'normal', 'high' );      
 
 
 

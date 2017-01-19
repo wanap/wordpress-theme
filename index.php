@@ -27,33 +27,39 @@
 		                    </a>
 		                </div>
 		                <div class="mod-info">
-                            <div class="mod-top">
+                            <div class="mod-top clearfix">
+                                <div class="mod-tips">推荐人：<a target="_blank" href="<?php echo get_author_posts_url(get_the_author_meta('ID'), get_the_author_meta('user_nicename')); ?>"><?php the_author(); ?></a></div>
+                                <div class="mod-tips">分类：<?php the_category(' '); ?></div>
                                 <div class="mod-time">
-                                    <?php $u_time = get_the_time('U'); 
-                                        $u_modified_time = get_the_modified_time('U');
-                                        if ($u_modified_time != $u_time) {
-                                            the_modified_time('Y年n月j日 H:i');
+                                    <?php 
+                                        if (get_the_time('U') != get_the_modified_time('U')) {
+                                            if (date("Y-m-d") == get_the_modified_time("Y-m-d")) {
+                                                the_modified_time('H:i');
+                                            } else {
+                                                the_modified_time('Y年n月j日 H:i');
+                                            }
                                         } else {
-                                            the_time('Y年n月j日 H:i');
+                                            if (date("Y-m-d") == get_the_time("Y-m-d")) {
+                                                the_time('H:i');
+                                            } else {
+                                                the_time('Y年n月j日 H:i');
+                                            }
                                         }
                                     ?>
                                 </div>
-                                <span>标签：</span>
-                                <?php the_category(' '); ?>
                             </div>
 		                    <p class="mod-desc">
-                                <?php echo mb_strimwidth(strip_tags(apply_filters('the_content', $post->post_content)), 0, 200, "……"); ?>
+                                <?php echo mb_strimwidth(strip_tags(apply_filters('the_content', $post->post_content), '<strong>'), 0, 240, "……"); ?>
                                 <a href="<?php the_permalink(); ?>" class="mod-read" target="_blank">阅读全文</a>
                             </p>
-		                    <div class="mod-ft clearfix">
-                                <span class="mod-tips">推荐人：<a href="#" class="mod-author" target="_blank">樱桃爸爸</a></span>
-		                        <span class="mod-tips">阅读(<?php if(function_exists('the_views')) { the_views(); } else { echo '200';} ?>)</span>
+		                    <div class="mod-ft">
+		                        <span class="mod-num"><?php if(function_exists('the_views')) { the_views(); } else { echo '200';} ?>人想买</span>
 		                        <div class="mod-buy">
+                                    <a href="<?php echo home_url().'/go/'.get_the_ID().'/'; ?>" class="buy-link" target="_blank">直达链接<i>&gt;</i></a>
 		                        	<?php if(get_post_custom_values("mall")){ 
                                         $values = get_post_custom_values("mall"); 
                                         echo '<span class="mall">'.$values[0].'</span>';
                                     }?>
-		                        	<a href="<?php echo home_url().'/go/'.get_the_ID().'/'; ?>" class="buy-link" target="_blank">直达链接&gt;</a>
 		                        </div>
 		                    </div>
 		                </div>
