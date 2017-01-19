@@ -25,16 +25,14 @@
                         <?php if(get_post_custom_values("thumbnail")){ 
                             $values = get_post_custom_values("thumbnail"); 
                             echo '<img src="'.$values[0].'" alt="">';
-                            } else { 
-                                echo '<img src="'.get_bloginfo('template_url').'/images/related-img.jpg">'; 
-                            }
-                        ?>
+                        }?>
                     </a>
-                    <div class="picwall-info">
+                    <div class="picwall-title">
                         <a href="<?php the_permalink(); ?>" target="_blank"><?php the_title();?></a>
                     </div>
                     <div class="picwall-ft">
-                        <a href="#" class="btn-buy">去购买>></a>
+                        <span class="num"><?php echo getPostViews(get_the_ID()); ?>人想买</span>
+                        <a href="<?php echo home_url().'/go/'.get_the_ID().'/'; ?>" class="btn-buy" target="_blank">直达链接<i>&gt;</i></a>
                     </div>
                 </div>
             <?php endwhile; ?>

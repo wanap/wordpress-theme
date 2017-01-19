@@ -52,7 +52,7 @@ function tagText(){
     $gettags = get_the_tags($post->ID);
     if ($gettags) {
         foreach ($gettags as $tag) {
-            $posttag[] = '<a class="tag">'.$tag->name.'</a>';
+            $posttag[] = $tag->name;
 	    }
 	    $tags = implode('', $posttag);
 		echo $tags;
@@ -161,9 +161,9 @@ function getPostViews($postID){
     if($count==''){
         delete_post_meta($postID, $count_key);
         add_post_meta($postID, $count_key, '0');
-        return "0 View";
+        return "0";
     }
-    return $count.' Views';
+    return $count;
 }
 
 function setPostViews($postID) {

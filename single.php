@@ -6,7 +6,8 @@
         		当前位置：<?php echo get_breadcrumbs(); ?>
         	</div>
 			<?php if (have_posts()) : ?>
-				<?php while (have_posts()) : the_post(); ?>	
+				<?php while (have_posts()) : the_post(); ?>
+					<?php setPostViews(get_the_ID()); ?>
 					<div class="post-detail" id="post-<?php the_ID(); ?>">
 						<h4 class="post-title">
 							<?php the_title();?> 
@@ -33,8 +34,7 @@
 	                    		echo "<div class='thumbnail'>"; 
 								echo '<img src="'.$values[0].'" alt="">';
 								echo "</div>";
-	                    		}
-							?>
+	                    	}?>
 							<div class="output">
 								<?php the_content();?>
 							</div>
@@ -67,10 +67,7 @@
 										<?php if(get_post_custom_values("thumbnail")){ 
 				                    		$values = get_post_custom_values("thumbnail"); 
 				                    		echo '<img src="'.$values[0].'" alt="">';
-				                    		} else { 
-												echo '<img src="'.get_bloginfo('template_url').'/images/related-img.jpg">'; 
-											}
-										?>
+				                    	}?>
 										</div>
 										<p class="similar-title"><?php the_title();?></p>
 									</a>

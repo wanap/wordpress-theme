@@ -4,7 +4,7 @@
         <div class="left-content">
             <?php if (have_posts()) : ?>
                 <div class="page-header">
-                    <h1 class="page-title"><?php printf('“<span>' . esc_html( get_search_query() ) . '</span>”'.'的搜索结果' ); ?></h1>
+                    <h1 class="page-title"><?php printf('<span>“' . esc_html( get_search_query() ) . '”</span>'.'的搜索结果' ); ?></h1>
                 </div>
                 <?php while (have_posts()) : the_post(); ?>
                     <div class="mod" id="post-<?php the_ID(); ?>">
@@ -22,10 +22,7 @@
                                 <?php if(get_post_custom_values("thumbnail")){ 
                                     $values = get_post_custom_values("thumbnail"); 
                                     echo '<img src="'.$values[0].'" alt="">';
-                                    } else { 
-                                        echo '<img src="'.get_bloginfo('template_url').'/images/related-img.jpg">'; 
-                                    }
-                                ?>
+                                }?>
                             </a>
                         </div>
                         <div class="mod-info">
