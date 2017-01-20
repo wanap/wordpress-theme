@@ -34,6 +34,16 @@
 
             "type"=>"text"),
 
+        "quan" => array( 
+
+            "name" => "url",
+
+            "std" => "", 
+
+            "title" => "优惠券链接", 
+
+            "type"=>"text"),
+
 	    "url" => array( 
 
             "name" => "url",

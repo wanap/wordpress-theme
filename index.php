@@ -63,7 +63,7 @@
 		            </div>
 				<?php endwhile; ?>
 				<div class="page-nav">
-					<?php boke8_net_pagenavi(6);?>
+					<?php pageBar(6);?>
 				</div>
 			<?php else : ?>
 				<div class="not-fountd">你要找的页面已删除或不存在</div>

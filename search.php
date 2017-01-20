@@ -52,7 +52,7 @@
                                 <a href="<?php the_permalink(); ?>" class="mod-read" target="_blank">阅读全文</a>
                             </p>
                             <div class="mod-ft">
-                                <span class="mod-num"><?php if(function_exists('the_views')) { the_views(); } else { echo '200';} ?>人想买</span>
+                                <span class="mod-num"><?php echo getPostViews(get_the_ID()); ?>人想买</span>
                                 <div class="mod-buy">
                                     <a href="<?php echo home_url().'/go/'.get_the_ID().'/'; ?>" class="buy-link" target="_blank">直达链接<i>&gt;</i></a>
                                     <?php if(get_post_custom_values("mall")){ 
@@ -65,7 +65,7 @@
                     </div>
                 <?php endwhile; ?>
                 <div class="page-nav">
-                    <?php boke8_net_pagenavi(6);?>
+                    <?php pageBar(6);?>
                 </div>
             <?php else : ?>
                 <div class="not-fountd">抱歉，没有找到<?php printf('“<span>' . esc_html( get_search_query() ) . '</span>”' ); ?>相关内容</div>

@@ -59,7 +59,7 @@ function tagText(){
 	}
 }
 
-function boke8_net_pagenavi($range = 9){
+function pageBar($range = 9){
 
 	global $paged, $wp_query;
 
