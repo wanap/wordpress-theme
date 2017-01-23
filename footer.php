@@ -1,6 +1,7 @@
 <div class="container footer">
 	<p>版权所有Copyright &copy;2016网站名称 &nbsp;&nbsp; <a href="#">公司名称</a></p>
 	<p>ICP备案号</p>
+	<p><?php echo get_num_queries(); ?> queries in <?php timer_stop(3); ?> seconds.</p>
 </div>
 
 <script language="javascript">

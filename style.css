@@ -49,10 +49,11 @@ a:hover{text-decoration:none;}
 
 .header-menu{background:#f04848;}
 .header-menu-list:after{display:block; visibility:hidden; clear:both; height:0; content: ".";}
-.header-menu-list > li{position:relative; float:left; height:38px; margin-right:4px;}
+.header-menu-list > li{position:relative; float:left; height:38px;}
 .header-menu-list > li > a{display:block; padding:0 30px; height:38px; line-height:38px; font-size:18px; color:#fff;}
 .header-menu-list > li > a:hover{background:#A40000;}
-.header-menu-list > li > a.current{background:#A40000;}
+.header-menu-list > li.current-menu-item > a, 
+.header-menu-list > li.current_page_item > a{background:#A40000;}
 .header-menu-list .sub-menu{display:none; z-index:1; position:absolute; left:0; right:0; top:38px; background:#A40000;}
 .sub-menu a{display:block; height:38px; line-height:38px; font-size:16px; color:#fff; text-align:center;}
 
@@ -111,6 +112,8 @@ a:hover{text-decoration:none;}
 .category-list li{padding:5px 0;}
 .category-list li a{display:block; font-size:14px; color:#666; line-height:20px; text-align:center; border-left:3px solid #fff;}
 .category-list li a:hover{color:#f04848; border-color:#f04848;}
+.category-list li.current-menu-item > a,
+.category-list li.current_page_item > a{color:#f04848; border-color:#f04848;}
 
 .page-nav{margin-bottom:20px; text-align:center;}
 .page-nav a, .page-nav strong{display:inline-block; margin-right:9px; background:#fff;}
